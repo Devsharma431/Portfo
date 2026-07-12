@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dev Sharma — Web Developer & Software Engineer. Building innovative, interactive web applications with Python, Django, JavaScript, and modern frameworks.">
+  <meta name="author" content="Dev Sharma">
+  <meta property="og:title" content="Dev Sharma | Portfolio">
+  <meta property="og:description" content="Web Developer & Software Engineer portfolio featuring Python, Django, JavaScript, and modern web technologies.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dev Sharma | Portfolio">
+  <meta name="twitter:description" content="Web Developer & Software Engineer portfolio featuring Python, Django, JavaScript, and modern web technologies.">
+  <title>Dev Sharma | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="css/main.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='100' y2='100'%3E%3Cstop offset='0' stop-color='%2300ffff'/%3E%3Cstop offset='1' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='12' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-size='50' font-weight='700' fill='%23000' text-anchor='middle' font-family='monospace'%3E%3C%3E%3C/text%3E%3C/svg">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <div class="video-bg" id="videoBg" aria-hidden="true">
+    <video id="bgVideo" class="bg-video" autoplay muted playsinline loop preload="auto">
+      <source src="cd.mp4" type="video/mp4">
+    </video>
+    <div class="video-bg-overlay"></div>
+  </div>
+
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <a href="#" class="nav-brand" aria-label="Dev Sharma Home">
+      <svg class="nav-brand-icon" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
+        <defs>
+          <linearGradient id="brandGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#00ffff"/>
+            <stop offset="100%" stop-color="#7c3aed"/>
+          </linearGradient>
+        </defs>
+        <rect x="2" y="2" width="28" height="28" rx="4" fill="none" stroke="url(#brandGrad)" stroke-width="1.5"/>
+        <text x="16" y="22" font-size="14" font-weight="700" fill="url(#brandGrad)" text-anchor="middle" font-family="monospace">>></text>
+      </svg>
+      <span class="nav-brand-text">DEV.SHARMA</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about" class="nav-link">ABOUT</a>
+      <a href="#work" class="nav-link">WORK</a>
+      <a href="#process" class="nav-link">PROCESS</a>
+      <a href="#contact" class="nav-link">CONTACT</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+  </nav>
+
+  <canvas id="ambientCanvas" class="ambient-canvas" aria-hidden="true"></canvas>
+
+  <main id="main">
+    <section id="hero" class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow" aria-hidden="true">
+          <span class="hero-eyebrow-tag">BUILD v1.0.0</span>
+          <span class="hero-eyebrow-divider" aria-hidden="true"></span>
+          <span class="hero-eyebrow-status">SYSTEM ONLINE</span>
+        </div>
+        <h1 id="hero-title" class="hero-title">
+          <span class="hero-title-line">
+            <span class="hero-title-word" data-word="DEVELOPER">DEVELOPER</span>
+          </span>
+          <span class="hero-title-line">
+            <span class="hero-title-word" data-word="ENGINEER">ENGINEER</span>
+          </span>
+          <span class="hero-title-line">
+            <span class="hero-title-word" data-word="CREATOR">CREATOR</span>
+          </span>
+        </h1>
+        <p class="hero-subtitle">Crafting innovative, interactive web applications at the intersection of design and engineering.</p>
+        <div class="hero-ctas">
+          <a href="#work" class="btn btn-primary" data-cursor-text="VIEW WORK">
+            <span class="btn-text">VIEW WORK</span>
+            <span class="btn-glow" aria-hidden="true"></span>
+          </a>
+          <a href="#contact" class="btn btn-secondary" data-cursor-text="CONNECT">
+            <span class="btn-text">CONTACT</span>
+            <span class="btn-glow" aria-hidden="true"></span>
+          </a>
+        </div>
+        <div class="hero-scroll" id="heroScroll" aria-hidden="true">
+          <span class="hero-scroll-text">SCROLL</span>
+          <svg class="hero-scroll-arrow" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M12 4v16M8 12l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section about" aria-labelledby="about-title">
+      <div class="section-header">
+        <span class="section-tag" aria-hidden="true">01_SYSTEM_PROFILE</span>
+        <h2 id="about-title" class="section-title">ABOUT</h2>
+      </div>
+      <div class="about-grid">
+        <article class="glass-panel about-panel" data-reveal>
+          <div class="panel-header">
+            <span class="panel-code" aria-hidden="true">USR_001</span>
+            <span class="panel-divider" aria-hidden="true"></span>
+            <span class="panel-status" aria-hidden="true">ACTIVE</span>
+          </div>
+          <div class="about-meta">
+            <div class="meta-item">
+              <span class="meta-label">ROLE</span>
+              <span class="meta-value">Full-Stack Developer</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">LOCATION</span>
+              <span class="meta-value">Remote / Global</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">FOCUS</span>
+              <span class="meta-value">Web Apps, APIs, DevOps</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">EXPERIENCE</span>
+              <span class="meta-value">2+ Years</span>
+            </div>
+          </div>
+          <div class="about-bio">
+            <p>I'm a web developer and software engineer with a passion for building innovative, interactive web applications. My journey started with Python and Django, expanded into the JavaScript ecosystem, and now spans full-stack development with modern frameworks.</p>
+            <p>I believe clean code, thoughtful UX, and performance-first architecture are the foundations of great software. Whether it's a real-time dashboard, a content-driven platform, or a developer tool, I approach every project with the same rigor: understand the problem deeply, then build the simplest solution that scales.</p>
+          </div>
+        </article>
+        <article class="glass-panel skills-panel" data-reveal>
+          <div class="panel-header">
+            <span class="panel-code" aria-hidden="true">SKL_MTX</span>
+            <span class="panel-divider" aria-hidden="true"></span>
+            <span class="panel-status" aria-hidden="true">LOADING</span>
+          </div>
+          <div class="skills-grid" id="skillsGrid">
+            <div class="skill-node" data-skill="Python" data-level="90">
+              <span class="skill-name">Python</span>
+              <div class="skill-ring" data-progress="90">
+                <svg class="skill-ring-svg" viewBox="0 0 80 80">
+                  <circle class="skill-ring-bg" cx="40" cy="40" r="34" fill="none" stroke-width="4"/>
+                  <circle class="skill-ring-fg" cx="40" cy="40" r="34" fill="none" stroke-width="4" stroke-linecap="round" transform="rotate(-90 40 40)"/>
+                </svg>
+                <span class="skill-percent">90%</span>
+              </div>
+            </div>
+            <div class="skill-node" data-skill="JavaScript" data-level="85">
+              <span class="skill-name">JavaScript</span>
+              <div class="skill-ring" data-progress="85">
+                <svg class="skill-ring-svg" viewBox="0 0 80 80">
+                  <circle class="skill-ring-bg" cx="40" cy="40" r="34" fill="none" stroke-width="4"/>
+                  <circle class="skill-ring-fg" cx="40" cy="40" r="34" fill="none" stroke-width="4" stroke-linecap="round" transform="rotate(-90 40 40)"/>
+                </svg>
+                <span class="skill-percent">85%</span>
+              </div>
+            </div>
+            <div class="skill-node" data-skill="Django" data-level="88">
+              <span class="skill-name">Django</span>
+              <div class="skill-ring" data-progress="88">
+                <svg class="skill-ring-svg" viewBox="0 0 80 80">
+                  <circle class="skill-ring-bg" cx="40" cy="40" r="34" fill="none" stroke-width="4"/>
+                  <circle class="skill-ring-fg" cx="40" cy="40" r="34" fill="none" stroke-width="4" stroke-linecap="round" transform="rotate(-90 40 40)"/>
+                </svg>
+                <span class="skill-percent">88%</span>
+              </div>
+            </div>
+            <div class="skill-node" data-skill="SQL" data-level="80">
+              <span class="skill-name">SQL</span>
+              <div class="skill-ring" data-progress="80">
+                <svg class="skill-ring-svg" viewBox="0 0 80 80">
+                  <circle class="skill-ring-bg" cx="40" cy="40" r="34" fill="none" stroke-width="4"/>
+                  <circle class="skill-ring-fg" cx="40" cy="40" r="34" fill="none" stroke-width="4" stroke-linecap="round" transform="rotate(-90 40 40)"/>
+                </svg>
+                <span class="skill-percent">80%</span>
+              </div>
+            </div>
+            <div class="skill-node" data-skill="React/Next.js" data-level="75">
+              <span class="skill-name">React/Next.js</span>
+              <div class="skill-ring" data-progress="75">
+                <svg class="skill-ring-svg" viewBox="0 0 80 80">
+                  <circle class="skill-ring-bg" cx="40" cy="40" r="34" fill="none" stroke-width="4"/>
+                  <circle class="skill-ring-fg" cx="40" cy="40" r="34" fill="none" stroke-width="4" stroke-linecap="round" transform="rotate(-90 40 40)"/>
+                </svg>
+                <span class="skill-percent">75%</span>
+              </div>
+            </div>
+            <div class="skill-node" data-skill="DevOps/Docker" data-level="70">
+              <span class="skill-name">DevOps/Docker</span>
+              <div class="skill-ring" data-progress="70">
+                <svg class="skill-ring-svg" viewBox="0 0 80 80">
+                  <circle class="skill-ring-bg" cx="40" cy="40" r="34" fill="none" stroke-width="4"/>
+                  <circle class="skill-ring-fg" cx="40" cy="40" r="34" fill="none" stroke-width="4" stroke-linecap="round" transform="rotate(-90 40 40)"/>
+                </svg>
+                <span class="skill-percent">70%</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="work" class="section work" aria-labelledby="work-title">
+      <div class="section-header">
+        <span class="section-tag" aria-hidden="true">02_DEPLOYED_SYSTEMS</span>
+        <h2 id="work-title" class="section-title">SELECTED WORK</h2>
+      </div>
+      <div class="work-track" id="workTrack">
+        <article class="work-panel glass-panel" data-work="anomaly" data-reveal>
+          <div class="work-preview" data-glow>
+            <div class="work-preview-media">
+              <svg class="work-thumb" viewBox="0 0 400 250" width="400" height="250" aria-hidden="true">
+                <defs>
+                  <linearGradient id="anomalyGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#00ffff"/>
+                    <stop offset="100%" stop-color="#7c3aed"/>
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="250" fill="url(#anomalyGrad)" opacity="0.15"/>
+                <rect x="50" y="50" width="300" height="150" rx="8" fill="none" stroke="url(#anomalyGrad)" stroke-width="1.5"/>
+                <text x="200" y="105" font-family="monospace" font-size="14" fill="url(#anomalyGrad)" text-anchor="middle" letter-spacing="0.2em">WEBSOCKET CHAT</text>
+                <text x="200" y="125" font-family="monospace" font-size="10" fill="#7c3aed" text-anchor="middle" opacity="0.7">DJANGO CHANNELS · REDIS</text>
+                <g transform="translate(200, 170)" stroke="url(#anomalyGrad)" stroke-width="1.5" fill="none">
+                  <circle r="20" stroke-dasharray="125.6" stroke-dashoffset="30"/>
+                  <circle r="35" stroke-dasharray="219.8" stroke-dashoffset="60"/>
+                  <circle r="50" stroke-dasharray="314" stroke-dashoffset="100"/>
+                </g>
+              </svg>
+            </div>
+            <div class="work-preview-overlay">
+              <div class="work-code-snippet" aria-label="Anomaly Chat Engine WebSocket handler">
+                <span class="code-kw">class</span> <span class="code-class">ChatConsumer</span><span class="code-op">(</span>AsyncWebsocketConsumer<span class="code-op">):</span>
+                <br><span class="code-indent"></span><span class="code-kw">async</span> <span class="code-kw">def</span> <span class="code-fn">connect</span><span class="code-op">(</span><span class="code-var">self</span><span class="code-op">):</span>
+                <br><span class="code-indent"></span><span class="code-indent"></span><span class="code-kw">await</span> <span class="code-var">self</span><span class="code-op">.</span>channel_layer<span class="code-op">.</span>group_add<span class="code-op">(</span><span class="code-str">"chat"</span>, <span class="code-var">self</span><span class="code-op">.</span>channel_name<span class="code-op">)</span>
+                <br><span class="code-indent"></span><span class="code-kw">await</span> <span class="code-var">self</span><span class="code-op">.</span>accept<span class="code-op">(</span><span class="code-op">)</span>
+                <br><span class="code-indent"></span><span class="code-kw">async</span> <span class="code-kw">def</span> <span class="code-fn">receive</span><span class="code-op">(</span><span class="code-var">self</span>, text_data<span class="code-op">)</span><span class="code-op">:</span>
+                <br><span class="code-indent"></span><span class="code-indent"></span><span class="code-kw">await</span> <span class="code-var">self</span><span class="code-op">.</span>channel_layer<span class="code-op">.</span>group_send<span class="code-op">(</span><span class="code-str">"chat"</span>, <span class="code-op">{</span><span class="code-str">"type"</span><span class="code-op">:</span> <span class="code-str">"chat.message"</span>, <span class="code-str">"message"</span><span class="code-op">:</span> text_data<span class="code-op">}</span><span class="code-op">)</span>
+              </div>
+            </div>
+            <div class="work-scanline" aria-hidden="true"></div>
+          </div>
+          <div class="work-content">
+            <div class="work-meta">
+              <span class="work-tag">DJANGO CHANNELS</span>
+              <span class="work-tag">WEBSOCKETS</span>
+              <span class="work-tag">REDIS</span>
+            </div>
+            <h3 class="work-title">Anomaly Chat Engine</h3>
+            <div class="work-desc">
+              <div class="work-desc-block">
+                <span class="work-desc-label">PROBLEM</span>
+                <p>Build a real-time anonymous chat system with WebSocket connections, room-based messaging, and horizontal scaling support — without user accounts or persistent identity.</p>
+              </div>
+              <div class="work-desc-block">
+                <span class="work-desc-label">APPROACH</span>
+                <p>Django Channels with Redis channel layer for WebSocket handling. Ephemeral message storage with TTL. Connection pooling and heartbeat for scale. Rate limiting per IP. Deployed via Docker Compose with Daphne ASGI server.</p>
+              </div>
+              <div class="work-desc-block">
+                <span class="work-desc-label">OUTCOME</span>
+                <p>Sub-50ms message latency. Handles 1000+ concurrent connections. Zero message loss under load. Horizontal scaling via Redis pub/sub. Open-sourced at github.com/Devsharma431/Ananmoly.</p>
+              </div>
+            </div>
+            <a href="https://github.com/Devsharma431/Ananmoly" target="_blank" rel="noopener noreferrer" class="work-link">
+              <span>VIEW SOURCE</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="work-panel glass-panel" data-work="blog-django" data-reveal>
+          <div class="work-preview" data-glow>
+            <div class="work-preview-media">
+              <svg class="work-thumb" viewBox="0 0 400 250" width="400" height="250" aria-hidden="true">
+                <defs>
+                  <linearGradient id="blogDjangoGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#092e20"/>
+                    <stop offset="100%" stop-color="#0c3e2b"/>
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="250" fill="url(#blogDjangoGrad)" opacity="0.2"/>
+                <rect x="50" y="50" width="300" height="150" rx="8" fill="none" stroke="#092e20" stroke-width="1.5"/>
+                <text x="200" y="95" font-family="monospace" font-size="14" fill="#092e20" text-anchor="middle" letter-spacing="0.1em">BLOG PLATFORM</text>
+                <text x="200" y="115" font-family="monospace" font-size="10" fill="#092e20" text-anchor="middle" opacity="0.7">DJANGO · POSTGRESQL · MARKDOWN</text>
+                <g transform="translate(200, 165)" stroke="#092e20" stroke-width="1.5" fill="none">
+                  <rect x="-40" y="-20" width="80" height="40" rx="4" stroke-dasharray="160" stroke-dashoffset="40"/>
+                  <rect x="-20" y="-10" width="40" height="20" rx="2"/>
+                  <line x1="-15" y1="0" x2="15" y2="0" stroke-width="2"/>
+                  <line x1="-15" y1="8" x2="15" y2="8" stroke-width="1.5" opacity="0.7"/>
+                  <line x1="-15" y1="-8" x2="15" y2="-8" stroke-width="1.5" opacity="0.7"/>
+                </g>
+              </svg>
+            </div>
+            <div class="work-preview-overlay">
+              <div class="work-code-snippet" aria-label="Django blog models code snippet">
+                <span class="code-kw">class</span> <span class="code-class">Post</span><span class="code-op">(</span>models.<span class="code-class">Model</span><span class="code-op">):</span>
+                <br><span class="code-indent"></span>title = models.<span class="code-fn">CharField</span><span class="code-op">(</span>max_length=<span class="code-num">200</span><span class="code-op">)</span>
+                <br><span class="code-indent"></span>slug = models.<span class="code-fn">SlugField</span><span class="code-op">(</span>unique=<span class="code-kw">True</span><span class="code-op">)</span>
+                <br><span class="code-indent"></span>content = models.<span class="code-fn">TextField</span><span class="code-op">(</span><span class="code-op">)</span>
+                <br><span class="code-indent"></span>published = models.<span class="code-fn">DateTimeField</span><span class="code-op">(</span>auto_now_add=<span class="code-kw">True</span><span class="code-op">)</span>
+                <br><span class="code-indent"></span><span class="code-kw">def</span> <span class="code-fn">__str__</span><span class="code-op">(</span><span class="code-var">self</span><span class="code-op">):</span> <span class="code-kw">return</span> <span class="code-var">self</span><span class="code-op">.</span>title
+              </div>
+            </div>
+            <div class="work-scanline" aria-hidden="true"></div>
+          </div>
+          <div class="work-content">
+            <div class="work-meta">
+              <span class="work-tag">DJANGO</span>
+              <span class="work-tag">PYTHON</span>
+              <span class="work-tag">POSTGRESQL</span>
+            </div>
+            <h3 class="work-title">Blog Platform (Django)</h3>
+            <div class="work-desc">
+              <div class="work-desc-block">
+                <span class="work-desc-label">PROBLEM</span>
+                <p>Build a full-featured blog platform with markdown support, SEO optimization, tag-based categorization, and admin dashboard — deployable to production.</p>
+              </div>
+              <div class="work-desc-block">
+                <span class="work-desc-label">APPROACH</span>
+                <p>Django 4.x with PostgreSQL. Custom markdown pipeline with syntax highlighting. Sitemap/RSS generation. Class-based views with mixins. Dockerized deployment with Nginx/Gunicorn.</p>
+              </div>
+              <div class="work-desc-block">
+                <span class="work-desc-label">OUTCOME</span>
+                <p>Production-ready blog with 95+ Lighthouse scores. Extensible tag system, draft/publish workflow, reading time estimation, and Open Graph meta generation.</p>
+              </div>
+            </div>
+            <a href="https://github.com/Devsharma431/Blog-App" target="_blank" rel="noopener noreferrer" class="work-link">
+              <span>VIEW SOURCE</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="work-panel glass-panel" data-work="bash" data-reveal>
+          <div class="work-preview" data-glow>
+            <div class="work-preview-media">
+              <svg class="work-thumb" viewBox="0 0 400 250" width="400" height="250" aria-hidden="true">
+                <defs>
+                  <linearGradient id="bashGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#0d1a0d"/>
+                    <stop offset="100%" stop-color="#1a2e1a"/>
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="250" fill="url(#bashGrad)" opacity="0.2"/>
+                <rect x="50" y="50" width="300" height="150" rx="8" fill="none" stroke="#2e6b2e" stroke-width="1.5"/>
+                <text x="200" y="95" font-family="monospace" font-size="14" fill="#2e6b2e" text-anchor="middle" letter-spacing="0.1em">AUTOMATION SUITE</text>
+                <text x="200" y="115" font-family="monospace" font-size="10" fill="#2e6b2e" text-anchor="middle" opacity="0.7">BASH · DOCKER · SYSTEMD · CI/CD</text>
+                <g transform="translate(200, 165)" stroke="#2e6b2e" stroke-width="1.5" fill="none">
+                  <rect x="-60" y="-15" width="120" height="30" rx="4" stroke-dasharray="240" stroke-dashoffset="60"/>
+                  <text x="0" y="5" font-family="monospace" font-size="10" fill="#2e6b2e" text-anchor="middle" opacity="0.8">./deploy.sh --prod</text>
+                  <line x1="-50" y1="25" x2="50" y2="25" stroke-width="1" opacity="0.4"/>
+                  <text x="0" y="45" font-family="monospace" font-size="9" fill="#2e6b2e" text-anchor="middle" opacity="0.6">DEPLOY COMPLETE ✓</text>
+                </g>
+              </svg>
+            </div>
+            <div class="work-preview-overlay">
+              <div class="work-code-snippet" aria-label="Bash automation script snippet">
+                <span class="code-com">#!/bin/bash</span>
+                <br><span class="code-com"># Automated backup & deploy pipeline</span>
+                <br><span class="code-var">TIMESTAMP</span><span class="code-op">=</span><span class="code-str">$(date +%Y%m%d_%H%M%S)</span>
+                <br><span class="code-fn">backup_db</span><span class="code-op">()</span> <span class="code-op">{</span>
+                <br><span class="code-indent"></span>pg_dump <span class="code-var">$DB_URL</span> <span class="code-op">></span> <span class="code-str">"backups/db_$TIMESTAMP.sql"</span>
+                <br><span class="code-op">}</span>
+                <br><span class="code-fn">deploy</span><span class="code-op">()</span> <span class="code-op">{</span>
+                <br><span class="code-indent"></span>docker compose up -d --build
+                <br><span class="code-op">}</span>
+              </div>
+            </div>
+            <div class="work-scanline" aria-hidden="true"></div>
+          </div>
+          <div class="work-content">
+            <div class="work-meta">
+              <span class="work-tag">LINUX</span>
+              <span class="work-tag">BASH</span>
+              <span class="work-tag">AUTOMATION</span>
+            </div>
+            <h3 class="work-title">Shell Automation Suite</h3>
+            <div class="work-desc">
+              <div class="work-desc-block">
+                <span class="work-desc-label">PROBLEM</span>
+                <p>Eliminate manual deployment steps for Django/Node apps. Create reusable, idempotent scripts for database backup, SSL renewal, log rotation, and zero-downtime deploys.</p>
+              </div>
+              <div class="work-desc-block">
+                <span class="work-desc-label">APPROACH</span>
+                <p>Modular bash library with strict error handling (set -euo pipefail). Traps for cleanup. Config-driven via .env. Systemd timers for scheduled jobs. Health checks before/after deploy.</p>
+              </div>
+              <div class="work-desc-block">
+                <span class="work-desc-label">OUTCOME</span>
+                <p>Deploy time reduced from 15min to <90s. Zero failed deploys in 6 months. Scripts reused across 3 production environments. Open-sourced as a template.</p>
+              </div>
+            </div>
+            <a href="https://github.com/Devsharma431/Shell-scripting" target="_blank" rel="noopener noreferrer" class="work-link">
+              <span>VIEW SOURCE</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="work-panel glass-panel" data-work="blog-next" data-reveal>
+          <div class="work-preview" data-glow>
+            <div class="work-preview-media">
+              <svg class="work-thumb" viewBox="0 0 400 250" width="400" height="250" aria-hidden="true">
+                <defs>
+                  <linearGradient id="nextGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#000000"/>
+                    <stop offset="100%" stop-color="#1a1a1a"/>
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="250" fill="url(#nextGrad)" opacity="0.2"/>
+                <rect x="50" y="50" width="300" height="150" rx="8" fill="none" stroke="#383838" stroke-width="1.5"/>
+                <text x="200" y="95" font-family="monospace" font-size="14" fill="#383838" text-anchor="middle" letter-spacing="0.1em">NEXT.JS BLOG</text>
+                <text x="200" y="115" font-family="monospace" font-size="10" fill="#383838" text-anchor="middle" opacity="0.7">TYPESCRIPT · TAILWIND · MDX · EDGE</text>
+                <g transform="translate(200, 165)" stroke="#383838" stroke-width="1.5" fill="none">
+                  <rect x="-40" y="-20" width="80" height="40" rx="4" stroke-dasharray="160" stroke-dashoffset="40"/>
+                  <text x="0" y="5" font-family="monospace" font-size="10" fill="#383838" text-anchor="middle" opacity="0.8">npm run dev</text>
+                  <line x1="-30" y1="20" x2="30" y2="20" stroke-width="1.5"/>
+                  <circle cx="0" cy="0" r="8" stroke-dasharray="50.24" stroke-dashoffset="12"/>
+                </g>
+              </svg>
+            </div>
+            <div class="work-preview-overlay">
+              <div class="work-code-snippet" aria-label="Next.js blog component snippet">
+                <span class="code-kw">export</span> <span class="code-kw">default</span> <span class="code-kw">function</span> <span class="code-fn">PostCard</span><span class="code-op">(</span><span class="code-op">{</span>post<span class="code-op">}</span><span class="code-op">)</span> <span class="code-op">{</span>
+                <br><span class="code-indent"></span><span class="code-kw">return</span> <span class="code-op">(</span>
+                <br><span class="code-indent"></span><article className=<span class="code-str">"glass-panel"</span>>
+                <br><span class="code-indent"></span>  <h3><span class="code-op">{</span>post.title<span class="code-op">}</span></h3>
+                <br><span class="code-indent"></span>  <time dateTime=<span class="code-op">{</span>post.date<span class="code-op">}</span>><span class="code-op">{</span>post.formattedDate<span class="code-op">}</span></time>
+                <br><span class="code-indent"></span></article>
+                <br><span class="code-indent"></span><span class="code-op">)</span>
+                <br><span class="code-op">}</span>
+              </div>
+            </div>
+            <div class="work-scanline" aria-hidden="true"></div>
+          </div>
+          <div class="work-content">
+            <div class="work-meta">
+              <span class="work-tag">NEXT.JS</span>
+              <span class="work-tag">TYPESCRIPT</span>
+              <span class="work-tag">TAILWIND</span>
+            </div>
+            <h3 class="work-title">Blog Theme (Next.js)</h3>
+            <div class="work-desc">
+              <div class="work-desc-block">
+                <span class="work-desc-label">PROBLEM</span>
+                <p>Create a performant, modern blog theme with MDX support, syntax highlighting, dark mode, and edge-ready deployment — optimized for Core Web Vitals.</p>
+              </div>
+              <div class="work-desc-block">
+                <span class="work-desc-label">APPROACH</span>
+                <p>Next.js 14 App Router with RSC. MDX via contentlayer. Shiki for syntax highlighting. Tailwind for styling. ISR for instant updates. Vercel Edge Functions for dynamic features.</p>
+              </div>
+              <div class="work-desc-block">
+                <span class="work-desc-label">OUTCOME</span>
+                <p>Sub-100ms TTFB. 100/100 Lighthouse. Type-safe content pipeline. Component-driven MDX (embedding React in markdown). Themeable design system.</p>
+              </div>
+            </div>
+            <a href="https://github.com/Devsharma431/nextjs-blog-theme" target="_blank" rel="noopener noreferrer" class="work-link">
+              <span>VIEW SOURCE</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="process" class="section process" aria-labelledby="process-title">
+      <div class="section-header">
+        <span class="section-tag" aria-hidden="true">03_CORE_SUBSYSTEMS</span>
+        <h2 id="process-title" class="section-title">PROCESS</h2>
+      </div>
+      <div class="process-grid" id="processGrid">
+        <article class="glass-panel process-panel" data-reveal data-step="01">
+          <div class="process-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="process-code">DISCOVERY</span>
+          <h3 class="process-title">Discovery & Analysis</h3>
+          <p class="process-desc">Deep-dive into requirements, constraints, and success metrics. Technical feasibility audit. Architecture decision records (ADRs) for key choices.</p>
+        </article>
+        <article class="glass-panel process-panel" data-reveal data-step="02">
+          <div class="process-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="process-code">DESIGN</span>
+          <h3 class="process-title">System Design</h3>
+          <p class="process-desc">Data models, API contracts, component hierarchy, and infrastructure topology. Design system tokens. Accessibility and performance budgets defined upfront.</p>
+        </article>
+        <article class="glass-panel process-panel" data-reveal data-step="03">
+          <div class="process-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="process-code">BUILD</span>
+          <h3 class="process-title">Implementation</h3>
+          <p class="process-desc">Test-driven development. Clean architecture with clear boundaries. CI/CD pipeline with automated testing, linting, and preview deployments on every PR.</p>
+        </article>
+        <article class="glass-panel process-panel" data-reveal data-step="04">
+          <div class="process-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="process-code">VERIFY</span>
+          <h3 class="process-title">Quality Assurance</h3>
+          <p class="process-desc">E2E testing with Playwright. Visual regression. Load testing. Accessibility audit (WCAG 2.1 AA). Security scanning. Performance profiling under throttled conditions.</p>
+        </article>
+        <article class="glass-panel process-panel" data-reveal data-step="05">
+          <div class="process-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="process-code">DEPLOY</span>
+          <h3 class="process-title">Deploy & Observe</h3>
+          <p class="process-desc">Blue-green deployments. Health checks and rollback automation. Structured logging, metrics, and alerting. Post-launch retrospective and iteration planning.</p>
+        </article>
+        <article class="glass-panel process-panel" data-reveal data-step="06">
+          <div class="process-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="process-code">ITERATE</span>
+          <h3 class="process-title">Continuous Improvement</h3>
+          <p class="process-desc">Feature flags for safe rollouts. A/B testing infrastructure. User feedback loops. Technical debt tracking. Regular architecture reviews and dependency updates.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact" aria-labelledby="contact-title">
+      <div class="section-header">
+        <span class="section-tag" aria-hidden="true">04_ESTABLISH_LINK</span>
+        <h2 id="contact-title" class="section-title">CONTACT</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="glass-panel contact-form-panel" data-reveal>
+          <div class="panel-header">
+            <span class="panel-code" aria-hidden="true">TX_OUT</span>
+            <span class="panel-divider" aria-hidden="true"></span>
+            <span class="panel-status" aria-hidden="true">READY</span>
+          </div>
+          <form id="contactForm" class="contact-form" action="https://formspree.io/f/your-form-id" method="POST" novalidate>
+            <div class="form-group">
+              <label for="name" class="form-label">NAME <span class="form-required" aria-hidden="true">[REQUIRED]</span></label>
+              <input type="text" id="name" name="name" class="form-input" required autocomplete="name" placeholder="Enter your name">
+              <span class="form-border" aria-hidden="true"></span>
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">EMAIL <span class="form-required" aria-hidden="true">[REQUIRED]</span></label>
+              <input type="email" id="email" name="email" class="form-input" required autocomplete="email" placeholder="your@domain.com">
+              <span class="form-border" aria-hidden="true"></span>
+            </div>
+            <div class="form-group">
+              <label for="message" class="form-label">MESSAGE <span class="form-required" aria-hidden="true">[REQUIRED]</span></label>
+              <textarea id="message" name="message" class="form-input form-textarea" required rows="6" placeholder="Describe your project, timeline, and budget..."></textarea>
+              <span class="form-border" aria-hidden="true"></span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-submit" data-cursor-text="TRANSMIT">
+              <span class="btn-text">SEND MESSAGE</span>
+              <span class="btn-glow" aria-hidden="true"></span>
+              <span class="btn-loader" aria-hidden="true"></span>
+            </button>
+            <div class="form-status" id="formStatus" aria-live="polite"></div>
+          </form>
+        </div>
+        <div class="glass-panel contact-info-panel" data-reveal>
+          <div class="panel-header">
+            <span class="panel-code" aria-hidden="true">ENDPOINTS</span>
+            <span class="panel-divider" aria-hidden="true"></span>
+            <span class="panel-status" aria-hidden="true">OPEN</span>
+          </div>
+          <div class="contact-channels">
+            <a href="mailto:dev.sharma@example.com" class="contact-channel" data-cursor-text="EMAIL">
+              <div class="channel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="m22 6-10 7L2 6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="channel-info">
+                <span class="channel-label">EMAIL</span>
+                <span class="channel-value">dev.sharma@example.com</span>
+              </div>
+            </a>
+            <a href="https://github.com/Devsharma431" target="_blank" rel="noopener noreferrer" class="contact-channel" data-cursor-text="GITHUB">
+              <div class="channel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="channel-info">
+                <span class="channel-label">GITHUB</span>
+                <span class="channel-value">github.com/Devsharma431</span>
+              </div>
+            </a>
+            <a href="https://linkedin.com/in/devsharma431" target="_blank" rel="noopener noreferrer" class="contact-channel" data-cursor-text="LINKEDIN">
+              <div class="channel-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="20" height="20"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 14h4v4M2 10h4v10M8 10v10" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="channel-info">
+                <span class="channel-label">LINKEDIN</span>
+                <span class="channel-value">linkedin.com/in/devsharma431</span>
+              </div>
+            </a>
+          </div>
+          <div class="contact-note">
+            <span class="note-prefix" aria-hidden="true">></span>
+            <p>Currently open for freelance, contract, and full-time opportunities. Response time: < 24 hours.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="footer-brand-link" aria-label="Back to top">
+          <svg class="footer-brand-icon" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
+            <defs>
+              <linearGradient id="footerBrandGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#00ffff"/>
+                <stop offset="100%" stop-color="#7c3aed"/>
+              </linearGradient>
+            </defs>
+            <rect x="2" y="2" width="28" height="28" rx="4" fill="none" stroke="url(#footerBrandGrad)" stroke-width="1.5"/>
+            <text x="16" y="22" font-size="14" font-weight="700" fill="url(#footerBrandGrad)" text-anchor="middle" font-family="monospace">>></text>
+          </svg>
+          <span class="footer-brand-text">DEV.SHARMA</span>
+        </a>
+        <p class="footer-tagline">BUILDING THE FUTURE, ONE COMMIT AT A TIME</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <span class="footer-nav-title">NAVIGATE</span>
+        <a href="#about" class="footer-link">About</a>
+        <a href="#work" class="footer-link">Work</a>
+        <a href="#process" class="footer-link">Process</a>
+        <a href="#contact" class="footer-link">Contact</a>
+      </nav>
+      <div class="footer-social">
+        <a href="https://github.com/Devsharma431" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/devsharma431" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 14h4v4M2 10h4v10M8 10v10" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="mailto:dev.sharma@example.com" class="footer-social-link" aria-label="Email">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="m22 6-10 7L2 6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; 2025 Dev Sharma. Built with precision.</p>
+      <p class="footer-version">v1.0.0 | <span id="footerBuildTime"></span></p>
+    </div>
+  </footer>
+        <p class="footer-version">v1.0.0 | <span id="footerBuildTime"></span></p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="custom-cursor" id="customCursor" aria-hidden="true">
+    <div class="cursor-ring"></div>
+    <div class="cursor-dot"></div>
+    <span class="cursor-text"></span>
+  </div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigger.js"
+    }
+  }
+  </script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

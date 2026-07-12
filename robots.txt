@@ -1,0 +1,13 @@
+# Robots.txt for Dev Sharma Portfolio
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://devsharma.example.com/sitemap.xml
+
+# Crawl-delay (optional, be polite)
+Crawl-delay: 10
+
+# Disallow private/admin paths (none in static site)
+# Disallow: /admin/
+# Disallow: /api/
