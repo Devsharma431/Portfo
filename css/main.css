@@ -494,36 +494,6 @@ textarea:focus-visible {
 }
 
 /* ==========================================================================
-   VIDEO BACKGROUND (FULL SITE)
-   ========================================================================== */
-
-.video-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.bg-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.video-bg-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(3,3,7,0.15) 0%, rgba(3,3,7,0.25) 50%, rgba(3,3,7,0.35) 100%),
-    radial-gradient(ellipse at 50% 40%, transparent 0%, rgba(3,3,7,0.15) 80%);
-  pointer-events: none;
-}
-
-/* ==========================================================================
    AMBIENT CANVAS BACKGROUND
    ========================================================================== */
 
@@ -934,11 +904,6 @@ textarea:focus-visible {
   min-height: 500px;
 }
 
-.work-panel.pinned {
-  position: sticky;
-  top: 100px;
-}
-
 .work-preview {
   position: relative;
   display: flex;
@@ -963,18 +928,6 @@ textarea:focus-visible {
   opacity: 1;
 }
 
-.work-preview-inner {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  min-height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-xl);
-}
-
 .work-preview-media {
   position: absolute;
   inset: 0;
@@ -991,6 +944,8 @@ textarea:focus-visible {
   max-height: 320px;
   object-fit: contain;
   filter: brightness(0.9) contrast(1.1);
+  opacity: 0.9;
+  transition: opacity var(--transition-base);
 }
 
 .work-preview-overlay {
@@ -1002,6 +957,8 @@ textarea:focus-visible {
   padding: var(--space-xl);
   background: linear-gradient(180deg, transparent 0%, rgba(3,3,7,0.3) 60%, rgba(3,3,7,0.5) 100%);
   z-index: 1;
+  opacity: 0;
+  transition: opacity var(--transition-base);
 }
 
 .work-code-snippet {
@@ -1013,6 +970,20 @@ textarea:focus-visible {
   max-width: 400px;
   opacity: 0.7;
   transition: opacity var(--transition-base);
+}
+
+.work-panel:hover .work-thumb {
+  opacity: 1;
+}
+
+.work-panel:hover .work-preview-overlay {
+  opacity: 1;
+}
+
+.work-preview-overlay .work-code-snippet {
+  opacity: 1;
+  max-width: 450px;
+  width: 100%;
 }
 
 .work-panel:hover .work-code-snippet {
@@ -1045,74 +1016,6 @@ textarea:focus-visible {
   .work-scanline {
     animation: none;
     display: none;
-  }
-}
-
-.work-preview-media {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.work-thumb {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.9;
-  transition: opacity var(--transition-base);
-}
-
-.work-panel:hover .work-thumb {
-  opacity: 1;
-}
-
-.work-preview-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(3,3,7,0.6) 60%, rgba(3,3,7,0.9) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-xl);
-  opacity: 0;
-  transition: opacity var(--transition-base);
-}
-
-.work-panel:hover .work-preview-overlay {
-  opacity: 1;
-}
-
-.work-preview-overlay .work-code-snippet {
-  opacity: 1;
-  max-width: 450px;
-  width: 100%;
-}
-
-.work-preview-inner {
-  display: none;
-}
-
-@media (max-width: 1024px) {
-  .work-panel {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
-
-  .work-preview {
-    border-right: none;
-    border-bottom: 1px solid var(--glass-border);
-    min-height: 300px;
-  }
-
-  .work-preview-inner {
-    min-height: 300px;
-  }
-
-  .work-preview-overlay {
-    opacity: 1;
-    background: linear-gradient(180deg, transparent 0%, rgba(3,3,7,0.7) 50%, rgba(3,3,7,0.95) 100%);
   }
 }
 
@@ -1223,8 +1126,9 @@ textarea:focus-visible {
     min-height: 300px;
   }
 
-  .work-preview-inner {
-    min-height: 300px;
+  .work-preview-overlay {
+    opacity: 1;
+    background: linear-gradient(180deg, transparent 0%, rgba(3,3,7,0.7) 50%, rgba(3,3,7,0.95) 100%);
   }
 }
 

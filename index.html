@@ -18,16 +18,16 @@
   <link rel="preload" as="style" href="css/main.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='100' y2='100'%3E%3Cstop offset='0' stop-color='%2300ffff'/%3E%3Cstop offset='1' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='12' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-size='50' font-weight='700' fill='%23000' text-anchor='middle' font-family='monospace'%3E%3C%3E%3C/text%3E%3C/svg">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .terminal-scroll::-webkit-scrollbar { width: 6px; }
+    .terminal-scroll::-webkit-scrollbar-track { background: #0d0e22; }
+    .terminal-scroll::-webkit-scrollbar-thumb { background: #312e81; border-radius: 4px; }
+  </style>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
-
-  <div class="video-bg" id="videoBg" aria-hidden="true">
-    <video id="bgVideo" class="bg-video" autoplay muted playsinline loop preload="auto">
-      <source src="cd.mp4" type="video/mp4">
-    </video>
-    <div class="video-bg-overlay"></div>
-  </div>
 
   <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
     <a href="#" class="nav-brand" aria-label="Dev Sharma Home">
@@ -55,6 +55,157 @@
       <span class="nav-toggle-bar"></span>
     </button>
   </nav>
+
+  <!-- STITCH_THREEJS_START:ANIMATION_20 -->
+  <div class="fixed inset-0 w-full h-full bg-transparent" style="display:block; z-index: 2;">
+    <script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+    <div id="threejs-container-ANIMATION_20" style="width:100%;height:100%"></div>
+    <script>
+    (function() {
+      const container = document.getElementById('threejs-container-ANIMATION_20');
+      const scene = new THREE.Scene();
+      const width = container.clientWidth || window.innerWidth;
+      const height = container.clientHeight || window.innerHeight;
+      const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      const robot = new THREE.Group();
+      scene.add(robot);
+
+      const wireMaterial = new THREE.MeshPhongMaterial({
+        color: 0x00f5ff, wireframe: true, transparent: true, opacity: 0.6,
+        emissive: 0x00f5ff, emissiveIntensity: 0.5
+      });
+      const solidMaterial = new THREE.MeshPhongMaterial({
+        color: 0x051424, transparent: true, opacity: 0.2
+      });
+
+      const createPart = (geometry, x, y, z, scale = 1) => {
+        const mesh = new THREE.Mesh(geometry, wireMaterial);
+        const core = new THREE.Mesh(geometry, solidMaterial);
+        const group = new THREE.Group();
+        group.add(mesh); group.add(core);
+        group.position.set(x, y, z);
+        group.scale.setScalar(scale);
+        robot.add(group);
+        return group;
+      };
+
+      const head = createPart(new THREE.IcosahedronGeometry(0.8, 1), 0, 1.8, 0);
+      const torso = createPart(new THREE.CylinderGeometry(0.7, 1, 2, 6), 0, 0, 0);
+      createPart(new THREE.SphereGeometry(0.4, 8, 8), -1.2, 0.8, 0);
+      createPart(new THREE.SphereGeometry(0.4, 8, 8), 1.2, 0.8, 0);
+      createPart(new THREE.CylinderGeometry(0.2, 0.2, 1.5, 6), -1.4, -0.2, 0);
+      createPart(new THREE.CylinderGeometry(0.2, 0.2, 1.5, 6), 1.4, -0.2, 0);
+
+      const rings = [];
+      for (let i = 0; i < 3; i++) {
+        const ringGeo = new THREE.TorusGeometry(3 + i * 0.5, 0.02, 16, 100);
+        const ring = new THREE.Mesh(ringGeo, wireMaterial);
+        ring.rotation.x = Math.PI / 2 + (Math.random() - 0.5);
+        ring.rotation.y = (Math.random() - 0.5);
+        scene.add(ring);
+        rings.push({ mesh: ring, speed: (Math.random() - 0.5) * 0.01 });
+      }
+
+      const pointsCount = 500;
+      const pointsGeo = new THREE.BufferGeometry();
+      const coords = new Float32Array(pointsCount * 3);
+      for (let i = 0; i < pointsCount * 3; i++) coords[i] = (Math.random() - 0.5) * 15;
+      pointsGeo.setAttribute('position', new THREE.BufferAttribute(coords, 3));
+      const pointsMat = new THREE.PointsMaterial({ color: 0x00f5ff, size: 0.05, transparent: true, opacity: 0.4 });
+      const points = new THREE.Points(pointsGeo, pointsMat);
+      scene.add(points);
+
+      const pLight = new THREE.PointLight(0x00f5ff, 2, 20);
+      pLight.position.set(5, 5, 5);
+      scene.add(pLight);
+      scene.add(new THREE.AmbientLight(0x111111));
+      camera.position.z = 8;
+
+      function animate(t) {
+        requestAnimationFrame(animate);
+        robot.rotation.y += 0.01;
+        robot.position.y = Math.sin(t * 0.001) * 0.2;
+        head.rotation.y = Math.sin(t * 0.002) * 0.3;
+        torso.rotation.z = Math.sin(t * 0.001) * 0.1;
+        rings.forEach(r => { r.mesh.rotation.z += r.speed; r.mesh.rotation.x += r.speed * 0.2; });
+        points.rotation.y += 0.0005;
+        renderer.render(scene, camera);
+      }
+      animate(0);
+
+      window.addEventListener('resize', () => {
+        const w = container.clientWidth || window.innerWidth;
+        const h = container.clientHeight || window.innerHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      });
+    })();
+    </script>
+  </div>
+  <!-- STITCH_THREEJS_END:ANIMATION_20 -->
+
+  <!-- STITCH_SHADER_START:ANIMATION_8 -->
+  <div class="fixed inset-0 w-full h-full" style="display:block; z-index: 1;">
+    <canvas id="shader-canvas-ANIMATION_8" style="display:block;width:100%;height:100%"></canvas>
+    <script>
+    (function() {
+      const canvas = document.getElementById('shader-canvas-ANIMATION_8');
+      function syncSize() {
+        const w = canvas.clientWidth  || 1280;
+        const h = canvas.clientHeight || 720;
+        if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+      }
+      if (typeof ResizeObserver !== 'undefined') { new ResizeObserver(syncSize).observe(canvas); }
+      syncSize();
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) return;
+      const vs = 'attribute vec2 a_position;varying vec2 v_texCoord;void main(){v_texCoord=a_position*0.5+0.5;gl_Position=vec4(a_position,0.0,1.0);}';
+      const fs = 'precision highp float;varying vec2 v_texCoord;uniform float u_time;uniform vec2 u_resolution;float noise(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}void main(){vec2 uv=v_texCoord;vec2 grid=fract(uv*40.0+u_time*0.05);float line=step(0.98,grid.x)+step(0.98,grid.y);float n=noise(floor(uv*40.0+u_time*0.05));float pulse=sin(u_time+n*10.0)*0.5+0.5;vec3 color=mix(vec3(0.01,0.05,0.1),vec3(0.0,0.96,1.0),line*pulse*0.2);color+=vec3(0.0,0.96,1.0)*pow(pulse,10.0)*0.05;gl_FragColor=vec4(color,1.0);}';
+      function cs(type, src) { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+      const prog = gl.createProgram();
+      gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+      gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+      gl.linkProgram(prog);
+      gl.useProgram(prog);
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,1,1]), gl.STATIC_DRAW);
+      const pos = gl.getAttribLocation(prog, 'a_position');
+      gl.enableVertexAttribArray(pos);
+      gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+      const uTime = gl.getUniformLocation(prog, 'u_time');
+      const uRes = gl.getUniformLocation(prog, 'u_resolution');
+      const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+      let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+      window.addEventListener('mousemove', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        if (rect.width && rect.height) {
+          const nx = (event.clientX - rect.left) / rect.width;
+          const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+          mouse.x = nx * canvas.width;
+          mouse.y = ny * canvas.height;
+        }
+      });
+      function render(t) {
+        if (typeof ResizeObserver === 'undefined') syncSize();
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        if (uTime) gl.uniform1f(uTime, t * 0.001);
+        if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+        if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(render);
+      }
+      render(0);
+    })();
+    </script>
+  </div>
+  <!-- STITCH_SHADER_END:ANIMATION_8 -->
 
   <canvas id="ambientCanvas" class="ambient-canvas" aria-hidden="true"></canvas>
 
@@ -190,8 +341,8 @@
                 <span class="skill-percent">75%</span>
               </div>
             </div>
-            <div class="skill-node" data-skill="DevOps/Docker" data-level="70">
-              <span class="skill-name">DevOps/Docker</span>
+            <div class="skill-node" data-skill="Flask" data-level="70">
+              <span class="skill-name">Flask</span>
               <div class="skill-ring" data-progress="70">
                 <svg class="skill-ring-svg" viewBox="0 0 80 80">
                   <circle class="skill-ring-bg" cx="40" cy="40" r="34" fill="none" stroke-width="4"/>
@@ -214,7 +365,7 @@
         <article class="work-panel glass-panel" data-work="anomaly" data-reveal>
           <div class="work-preview" data-glow>
             <div class="work-preview-media">
-              <svg class="work-thumb" viewBox="0 0 400 250" width="400" height="250" aria-hidden="true">
+              <svg class="work-thumb" viewBox="0 0 400 250" aria-hidden="true">
                 <defs>
                   <linearGradient id="anomalyGrad" x1="0" y1="0" x2="1" y2="1">
                     <stop offset="0%" stop-color="#00ffff"/>
@@ -275,7 +426,7 @@
         <article class="work-panel glass-panel" data-work="blog-django" data-reveal>
           <div class="work-preview" data-glow>
             <div class="work-preview-media">
-              <svg class="work-thumb" viewBox="0 0 400 250" width="400" height="250" aria-hidden="true">
+              <svg class="work-thumb" viewBox="0 0 400 250" aria-hidden="true">
                 <defs>
                   <linearGradient id="blogDjangoGrad" x1="0" y1="0" x2="1" y2="1">
                     <stop offset="0%" stop-color="#092e20"/>
@@ -338,7 +489,7 @@
         <article class="work-panel glass-panel" data-work="bash" data-reveal>
           <div class="work-preview" data-glow>
             <div class="work-preview-media">
-              <svg class="work-thumb" viewBox="0 0 400 250" width="400" height="250" aria-hidden="true">
+              <svg class="work-thumb" viewBox="0 0 400 250" aria-hidden="true">
                 <defs>
                   <linearGradient id="bashGrad" x1="0" y1="0" x2="1" y2="1">
                     <stop offset="0%" stop-color="#0d1a0d"/>
@@ -403,7 +554,7 @@
         <article class="work-panel glass-panel" data-work="blog-next" data-reveal>
           <div class="work-preview" data-glow>
             <div class="work-preview-media">
-              <svg class="work-thumb" viewBox="0 0 400 250" width="400" height="250" aria-hidden="true">
+              <svg class="work-thumb" viewBox="0 0 400 250" aria-hidden="true">
                 <defs>
                   <linearGradient id="nextGrad" x1="0" y1="0" x2="1" y2="1">
                     <stop offset="0%" stop-color="#000000"/>
@@ -463,6 +614,43 @@
             </a>
           </div>
         </article>
+      </div>
+    </section>
+
+    <section id="terminal" class="section" style="position: relative; z-index: 10; padding: 4rem 1.5rem; background: radial-gradient(ellipse 80% 50% at 50% 50%, rgba(0, 255, 255, 0.02) 0%, transparent 70%);">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase mb-2 inline-block"><i class="fa-solid fa-terminal mr-2"></i> BASH PLAYGROUND</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight" style="color: var(--color-white);">Interactive Shell Terminal</h2>
+          <p class="text-sm mt-2" style="color: var(--color-white-dim);">Test my portfolio with real CLI feedback commands. Type <strong style="color: var(--color-cyan);">help</strong> below to begin!</p>
+          <div class="w-16 h-1 mx-auto mt-4 rounded-full" style="background: linear-gradient(90deg, var(--color-cyan), var(--color-violet));"></div>
+        </div>
+        <div class="max-w-4xl mx-auto">
+          <div class="rounded-2xl border overflow-hidden shadow-2xl" style="border-color: var(--glass-border); background: var(--glass-bg); backdrop-filter: blur(20px) saturate(180%);">
+            <div class="px-4 py-3.5 border-b flex items-center justify-between" style="background: var(--color-space-elevated); border-color: var(--glass-border);">
+              <div class="flex space-x-2">
+                <div class="w-3.5 h-3.5 rounded-full" style="background: #ff5f56;"></div>
+                <div class="w-3.5 h-3.5 rounded-full" style="background: #ffbd2e;"></div>
+                <div class="w-3.5 h-3.5 rounded-full" style="background: #27c93f;"></div>
+              </div>
+              <span class="text-xs font-mono font-semibold tracking-wider" style="color: var(--color-white-muted);"><i class="fa-solid fa-terminal mr-2"></i> bash - guest@devco:~</span>
+              <div class="text-xs font-mono flex items-center gap-1" style="color: var(--color-white-muted);">
+                <span class="inline-block w-2 h-2 rounded-full" style="background: #27c93f;"></span> Active
+              </div>
+            </div>
+            <div class="p-6 font-mono text-xs sm:text-sm min-h-[350px] max-h-[450px] overflow-y-auto terminal-scroll space-y-4" id="terminal-history" style="background: rgba(3, 3, 7, 0.9); color: var(--color-white-dim);">
+              <div class="space-y-1">
+                <p style="color: var(--color-cyan);">Welcome to Dev.co Interactive CLI Console!</p>
+                <p style="color: var(--color-white-muted);">Type 'help' to view the catalog of custom actions available.</p>
+                <p style="color: var(--color-white-muted);">Last login: Sun Jul 12 2026 on ttys001</p>
+              </div>
+              <div class="flex items-center space-x-2" id="terminal-input-row">
+                <span style="color: var(--color-success); font-weight: 700;">guest@devco:~$</span>
+                <input type="text" id="terminal-input" class="bg-transparent border-none outline-none focus:ring-0 flex-1 w-full" style="color: var(--color-white);" autofocus autocomplete="off" placeholder="type a command...">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -645,10 +833,6 @@
       <p class="footer-version">v1.0.0 | <span id="footerBuildTime"></span></p>
     </div>
   </footer>
-        <p class="footer-version">v1.0.0 | <span id="footerBuildTime"></span></p>
-      </div>
-    </div>
-  </footer>
 
   <div class="custom-cursor" id="customCursor" aria-hidden="true">
     <div class="cursor-ring"></div>
@@ -666,5 +850,98 @@
   }
   </script>
   <script type="module" src="js/main.js"></script>
+  <script>
+  const terminalInput = document.getElementById('terminal-input');
+  const terminalHistory = document.getElementById('terminal-history');
+  const terminalInputRow = document.getElementById('terminal-input-row');
+
+  const shellCommandDb = {
+    help: `Available CLI Commands:<br>
+           - <span style='color: var(--color-success);'>about</span>: Print detailed career info & age philosophy.<br>
+           - <span style='color: var(--color-success);'>projects</span>: List Dev's current GitHub open-source repositories.<br>
+           - <span style='color: var(--color-success);'>skills</span>: Display Dev Sharma's technical proficiency core specs.<br>
+           - <span style='color: var(--color-success);'>neofetch</span>: Trigger visual specs dashboard metrics.<br>
+           - <span style='color: var(--color-success);'>contact</span>: Show contact protocols & deployment pipelines.<br>
+           - <span style='color: var(--color-success);'>clear</span>: Clear history scroll buffer on screen.`,
+    about: `Dev Sharma | Python Developer & Software Engineer.<br>
+            - Operational Location: Delhi, India.<br>
+            - Age Status: 17-Year-Old.<br>
+            - Philosophy: "Everything is achievable through Technology."<br>
+            - Purpose: Craft flawless backend databases & highly polished frontend spaces.`,
+    projects: `Found 4 core open-source repositories:<br>
+               1. <span style='color: var(--color-violet); font-weight: 700;'>nextjs-blog-theme</span> | JS, Next.js, Modern UI template.<br>
+               2. <span style='color: var(--color-violet); font-weight: 700;'>Blog-App</span> | Python, Django structured MTV setup.<br>
+               3. <span style='color: var(--color-violet); font-weight: 700;'>Shell-scripting</span> | Linux Bash pipeline automations.<br>
+               4. <span style='color: var(--color-violet); font-weight: 700;'>Flappy_Bird_Game</span> | PyGame arcade physics engine.<br>
+               * Type 'git clone [repo_name]' to replicate logic!`,
+    skills: `Technical Matrix Level Display:<br>
+             - Python / Django: <span style='color: var(--color-success); font-weight: 700;'>95% [Expert]</span><br>
+             - JavaScript / Next.js: <span style='color: var(--color-success); font-weight: 700;'>90% [Advanced]</span><br>
+             - Bash / Shell Scripting: <span style='color: var(--color-success); font-weight: 700;'>85% [Advanced]</span><br>
+             - SQL Databases: <span style='color: var(--color-success); font-weight: 700;'>80% [Proficient]</span><br>
+             - HTML5 / CSS3 Layouts: <span style='color: var(--color-success); font-weight: 700;'>95% [Expert]</span><br>
+             - Flask Backend: <span style='color: var(--color-success); font-weight: 700;'>75% [Proficient]</span>`,
+    neofetch: `<div class='flex flex-row gap-4 font-mono' style='color: var(--color-white-dim);'>
+                <div style='color: var(--color-violet); font-weight: 700;' class='hidden sm:block'>
+                 &nbsp;&nbsp;/\_<br>
+                 ( o.o )<br>
+                 &nbsp;&gt; ^ &lt;<br>
+                 /| |\\<br>
+                (_|_)_
+                </div>
+                <div>
+                  <span style='color: var(--color-violet); font-weight: 700;'>guest@devco</span><br>
+                  --------------------<br>
+                  <span style='color: var(--color-success); font-weight: 700;'>OS:</span> Web Browser Shell<br>
+                  <span style='color: var(--color-success); font-weight: 700;'>Kernel:</span> Chrome/Safari API v2026.0<br>
+                  <span style='color: var(--color-success); font-weight: 700;'>Uptime:</span> Live Simulation Active<br>
+                  <span style='color: var(--color-success); font-weight: 700;'>Shell:</span> Bash Command Interpreter v1.2<br>
+                  <span style='color: var(--color-success); font-weight: 700;'>Languages:</span> Python, JavaScript, Bash, SQL<br>
+                  <span style='color: var(--color-success); font-weight: 700;'>Frameworks:</span> Django, Next.js, Flask
+                </div>
+               </div>`,
+    contact: `Email deployment gateway is online:<br>
+              - Live Email: <span style='color: var(--color-success); font-weight: 700;'>devsharma431@github.com</span><br>
+              - GitHub Repository: <span style='color: var(--color-success); font-weight: 700;'>https://github.com/Devsharma431</span><br>
+              - Simply fill out the visual form below to deploy a message packet directly!`
+  };
+
+  terminalInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const query = terminalInput.value.trim();
+      const command = query.toLowerCase();
+      if (!query) return;
+      const userRow = document.createElement('div');
+      userRow.className = "flex items-center space-x-2";
+      userRow.innerHTML = '<span style="color: var(--color-success); font-weight: 700;">guest@devco:~$</span> <span style="color: var(--color-white);">' + query + '</span>';
+      terminalHistory.insertBefore(userRow, terminalInputRow);
+      const responseRow = document.createElement('div');
+      responseRow.style.cssText = "color: var(--color-white-dim); border-color: var(--glass-border); font-family: 'JetBrains Mono', monospace; font-size: 13px; padding-left: 0.5rem; border-left: 1px solid; margin: 0.25rem 0;";
+      if (command === 'clear') {
+        const logs = Array.from(terminalHistory.children);
+        logs.forEach(log => { if (log !== terminalInputRow) log.remove(); });
+      } else if (command.startsWith('git clone ')) {
+        const repoName = command.replace('git clone ', '').trim();
+        const repos = ['nextjs-blog-theme', 'blog-app', 'shell-scripting', 'flappy_bird_game'];
+        if (repos.includes(repoName)) {
+          responseRow.innerHTML = 'Cloning repository: <span style="color: var(--color-violet); font-weight: 700;">' + repoName + '</span>...<br>Resolving deltas: 100% (231/231), done.<br>Redirecting to repository index...';
+          setTimeout(() => { window.open('https://github.com/Devsharma431/' + repoName, '_blank'); }, 2000);
+        } else {
+          responseRow.innerHTML = '<span style="color: var(--color-danger);">Error: Repository \'' + repoName + '\' not found.</span> Try \'projects\' command.';
+        }
+        terminalHistory.insertBefore(responseRow, terminalInputRow);
+      } else if (shellCommandDb[command]) {
+        responseRow.innerHTML = shellCommandDb[command];
+        terminalHistory.insertBefore(responseRow, terminalInputRow);
+      } else {
+        responseRow.innerHTML = '<span style="color: var(--color-danger);">Command not found: \'' + query + '\'</span>. Type \'help\' to see available directives.';
+        terminalHistory.insertBefore(responseRow, terminalInputRow);
+      }
+      terminalInput.value = '';
+      terminalHistory.scrollTop = terminalHistory.scrollHeight;
+    }
+  });
+  terminalHistory.addEventListener('click', () => { terminalInput.focus(); });
+  </script>
 </body>
 </html>

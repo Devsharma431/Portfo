@@ -37,7 +37,6 @@ const SELECTORS = {
   formStatus: '#formStatus',
   footerBuildTime: '#footerBuildTime',
   workTrack: '#workTrack',
-  bgVideo: '#bgVideo',
 };
 
 const ELEMENTS = {};
@@ -98,10 +97,6 @@ function detectDeviceCapabilities() {
 }
 
 async function initBootSequence() {
-  const video = $('#bgVideo');
-  if (video) {
-    video.play().catch(() => {});
-  }
   CONFIG.bootComplete = true;
   initHeroAnimations();
 }
@@ -303,28 +298,6 @@ function initAmbientCanvas() {
   }
 }
 
-async function initHeroVideo() {
-  const video = $('#heroVideo');
-  const wrap = $('#heroVideoWrap');
-  const playBtn = $('#heroVideoPlay');
-
-  if (!video || !wrap) return;
-
-  if (CONFIG.reducedMotion) {
-    video.removeAttribute('autoplay');
-    video.removeAttribute('loop');
-    return;
-  }
-
-  try {
-    await video.play();
-  } catch (e) {
-    console.warn('Video autoplay prevented:', e);
-  }
-
-  if (playBtn) playBtn.remove();
-}
-
 function initCustomCursor() {
   if (!CONFIG.isDesktop || CONFIG.reducedMotion) return;
 
@@ -498,18 +471,8 @@ function initWorkPinning() {
 
   const workPanels = $$('.work-panel');
 
-  workPanels.forEach((panel, index) => {
-    const preview = panel.querySelector('.work-preview');
+  workPanels.forEach((panel) => {
     const content = panel.querySelector('.work-content');
-
-    ScrollTrigger.create({
-      trigger: panel,
-      start: 'top center',
-      end: 'bottom center',
-      pin: preview,
-      pinSpacing: false,
-      anticipatePin: 1,
-    });
 
     if (content) {
       gsap.fromTo(content,
@@ -521,14 +484,16 @@ function initWorkPinning() {
           ease: 'power3.out',
           scrollTrigger: {
             trigger: panel,
-            start: 'top 70%',
-            end: 'bottom 50%',
+            start: 'top 80%',
+            end: 'bottom 30%',
             scrub: 0.5,
           },
         }
       );
     }
   });
+
+  ScrollTrigger.refresh();
 }
 
 function initSkillsAnimation() {
