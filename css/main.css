@@ -534,10 +534,6 @@ textarea:focus-visible {
 }
 
 .hero-content {
-  pointer-events: none;
-}
-
-.hero-content {
   position: relative;
   z-index: var(--z-content);
   max-width: var(--container-max);
