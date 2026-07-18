@@ -209,10 +209,11 @@ textarea:focus-visible {
 
 .glass-panel {
   position: relative;
-  background: rgba(13, 13, 22, 0.85);
+  background: rgba(13, 13, 22, 0.95);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--glass-shadow), 0 0 30px rgba(0, 255, 255, 0.05);
+  backface-visibility: hidden;
 }
 
 .glass-panel::before {
