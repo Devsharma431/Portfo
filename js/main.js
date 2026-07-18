@@ -579,6 +579,42 @@ function initContactForm() {
   });
 }
 
+function initContactAnimation() {
+  if (typeof gsap === 'undefined' || CONFIG.reducedMotion) return;
+  const section = document.querySelector('#contact');
+  if (!section) return;
+  const panels = section.querySelectorAll('.glass-panel');
+  const channels = section.querySelectorAll('.contact-channel');
+  if (panels.length) {
+    gsap.from(panels, {
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 80%',
+        toggleActions: 'play none none reverse'
+      }
+    });
+  }
+  if (channels.length) {
+    gsap.from(channels, {
+      x: -30,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 75%',
+        toggleActions: 'play none none reverse'
+      }
+    });
+  }
+}
+
 function initFooterBuildTime() {
   const buildTimeEl = ELEMENTS.footerBuildTime;
   if (buildTimeEl) {
@@ -753,6 +789,7 @@ function init() {
   initSkillsAnimation();
   initCustomCursor();
   initContactForm();
+  initContactAnimation();
   initFooterBuildTime();
   initFooterAnimation();
 
