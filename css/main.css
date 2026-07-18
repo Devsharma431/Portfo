@@ -229,12 +229,15 @@ textarea:focus-visible {
 .glass-panel::after {
   content: '';
   position: absolute;
-  inset: -1px;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
   border-radius: inherit;
   background: linear-gradient(135deg, var(--color-cyan-glow), transparent 30%, var(--color-violet-glow));
-  opacity: 0.5;
+  opacity: 0.4;
   pointer-events: none;
-  z-index: -1;
+  clip-path: inset(1px round var(--radius-lg));
 }
 
 .glass-panel:hover {
