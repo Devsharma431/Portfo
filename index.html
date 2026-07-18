@@ -711,80 +711,77 @@
       </div>
     </section>
 
-    <section id="contact" class="section contact" aria-labelledby="contact-title" style="position: relative; z-index: 20;">
+    <section id="contact" class="section contact">
       <div class="section-header">
-        <span class="section-tag" aria-hidden="true">04_ESTABLISH_LINK</span>
+        <span class="section-tag">04_ESTABLISH_LINK</span>
         <h2 id="contact-title" class="section-title">CONTACT</h2>
       </div>
       <div class="contact-grid">
-        <div class="glass-panel contact-form-panel" data-reveal>
-          <div class="panel-header">
-            <span class="panel-code" aria-hidden="true">TX_OUT</span>
-            <span class="panel-divider" aria-hidden="true"></span>
-            <span class="panel-status" aria-hidden="true">READY</span>
+        <div class="contact-card">
+          <div class="contact-card-header">
+            <span class="contact-card-code">TX_OUT</span>
+            <span class="contact-card-divider"></span>
+            <span class="contact-card-status">READY</span>
           </div>
           <form id="contactForm" class="contact-form" action="https://formspree.io/f/your-form-id" method="POST" novalidate>
             <div class="form-group">
-              <label for="name" class="form-label">NAME <span class="form-required" aria-hidden="true">[REQUIRED]</span></label>
+              <label for="name" class="form-label">NAME <span class="form-required">[REQUIRED]</span></label>
               <input type="text" id="name" name="name" class="form-input" required autocomplete="name" placeholder="Enter your name">
-              <span class="form-border" aria-hidden="true"></span>
             </div>
             <div class="form-group">
-              <label for="email" class="form-label">EMAIL <span class="form-required" aria-hidden="true">[REQUIRED]</span></label>
+              <label for="email" class="form-label">EMAIL <span class="form-required">[REQUIRED]</span></label>
               <input type="email" id="email" name="email" class="form-input" required autocomplete="email" placeholder="your@domain.com">
-              <span class="form-border" aria-hidden="true"></span>
             </div>
             <div class="form-group">
-              <label for="message" class="form-label">MESSAGE <span class="form-required" aria-hidden="true">[REQUIRED]</span></label>
-              <textarea id="message" name="message" class="form-input form-textarea" required rows="6" placeholder="Describe your project, timeline, and budget..."></textarea>
-              <span class="form-border" aria-hidden="true"></span>
+              <label for="message" class="form-label">MESSAGE <span class="form-required">[REQUIRED]</span></label>
+              <textarea id="message" name="message" class="form-input form-textarea" required rows="5" placeholder="Describe your project, timeline, and budget..."></textarea>
             </div>
-            <button type="submit" class="btn btn-primary btn-submit" data-cursor-text="TRANSMIT">
+            <button type="submit" class="btn btn-primary">
               <span class="btn-text">SEND MESSAGE</span>
-              <span class="btn-glow" aria-hidden="true"></span>
-              <span class="btn-loader" aria-hidden="true"></span>
+              <span class="btn-glow"></span>
+              <span class="btn-loader"></span>
             </button>
-            <div class="form-status" id="formStatus" aria-live="polite"></div>
+            <div class="form-status" id="formStatus" role="status"></div>
           </form>
         </div>
-        <div class="glass-panel contact-info-panel" data-reveal>
-          <div class="panel-header">
-            <span class="panel-code" aria-hidden="true">ENDPOINTS</span>
-            <span class="panel-divider" aria-hidden="true"></span>
-            <span class="panel-status" aria-hidden="true">OPEN</span>
+        <div class="contact-card">
+          <div class="contact-card-header">
+            <span class="contact-card-code">ENDPOINTS</span>
+            <span class="contact-card-divider"></span>
+            <span class="contact-card-status">OPEN</span>
           </div>
-          <div class="contact-channels">
-            <a href="mailto:devpython345898@gmail.com" class="contact-channel" data-cursor-text="EMAIL">
-              <div class="channel-icon" aria-hidden="true">
+          <div class="contact-links">
+            <a href="mailto:devpython345898@gmail.com" class="contact-link">
+              <div class="contact-link-icon">
                 <svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="m22 6-10 7L2 6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
-              <div class="channel-info">
-                <span class="channel-label">EMAIL</span>
-                <span class="channel-value">devpython345898@gmail.com</span>
+              <div>
+                <div class="contact-link-label">EMAIL</div>
+                <div class="contact-link-value">devpython345898@gmail.com</div>
               </div>
             </a>
-            <a href="https://github.com/Devsharma431" target="_blank" rel="noopener noreferrer" class="contact-channel" data-cursor-text="GITHUB">
-              <div class="channel-icon" aria-hidden="true">
+            <a href="https://github.com/Devsharma431" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <div class="contact-link-icon">
                 <svg viewBox="0 0 24 24" width="20" height="20"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
-              <div class="channel-info">
-                <span class="channel-label">GITHUB</span>
-                <span class="channel-value">github.com/Devsharma431</span>
+              <div>
+                <div class="contact-link-label">GITHUB</div>
+                <div class="contact-link-value">github.com/Devsharma431</div>
               </div>
             </a>
-            <a href="https://linkedin.com/in/devsharma431" target="_blank" rel="noopener noreferrer" class="contact-channel" data-cursor-text="LINKEDIN">
-              <div class="channel-icon" aria-hidden="true">
+            <a href="https://linkedin.com/in/devsharma431" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <div class="contact-link-icon">
                 <svg viewBox="0 0 24 24" width="20" height="20"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 14h4v4M2 10h4v10M8 10v10" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
-              <div class="channel-info">
-                <span class="channel-label">LINKEDIN</span>
-                <span class="channel-value">linkedin.com/in/devsharma431</span>
+              <div>
+                <div class="contact-link-label">LINKEDIN</div>
+                <div class="contact-link-value">linkedin.com/in/devsharma431</div>
               </div>
             </a>
           </div>
           <div class="contact-note">
-            <span class="note-prefix" aria-hidden="true">></span>
-            <p>Currently open for freelance, contract, and full-time opportunities. Response time: < 24 hours.</p>
+            <span class="note-prefix">&gt;</span>
+            <p>Currently open for freelance, contract, and full-time opportunities. Response time: &lt; 24 hours.</p>
           </div>
         </div>
       </div>
