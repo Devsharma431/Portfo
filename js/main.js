@@ -587,6 +587,43 @@ function initFooterBuildTime() {
   }
 }
 
+function initFooterAnimation() {
+  if (typeof gsap === 'undefined' || CONFIG.reducedMotion) return;
+  const footer = document.querySelector('.footer');
+  if (!footer) return;
+  const grid = footer.querySelector('.footer-grid');
+  const bottom = footer.querySelector('.footer-bottom');
+  if (grid) {
+    const children = grid.querySelectorAll('.footer-brand, .footer-nav, .footer-social');
+    gsap.from(children, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: footer,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse'
+      }
+    });
+  }
+  if (bottom) {
+    gsap.from(bottom, {
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      delay: 0.3,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: footer,
+        start: 'top 80%',
+        toggleActions: 'play none none reverse'
+      }
+    });
+  }
+}
+
 async function initHeroFallingDots() {
   if (CONFIG.reducedMotion) return;
 
@@ -717,6 +754,7 @@ function init() {
   initCustomCursor();
   initContactForm();
   initFooterBuildTime();
+  initFooterAnimation();
 
   const heroScroll = ELEMENTS.heroScroll;
   if (heroScroll) {
