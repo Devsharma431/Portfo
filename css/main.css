@@ -215,7 +215,6 @@ textarea:focus-visible {
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--glass-shadow);
-  overflow: hidden;
 }
 
 .glass-panel::before {
@@ -224,21 +223,18 @@ textarea:focus-visible {
   inset: 0;
   background: linear-gradient(135deg, rgba(0, 255, 255, 0.03) 0%, transparent 50%, rgba(124, 58, 237, 0.03) 100%);
   pointer-events: none;
+  border-radius: var(--radius-lg);
 }
 
 .glass-panel::after {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: var(--radius-lg);
-  border: 1px solid transparent;
-  background: linear-gradient(135deg, var(--color-cyan-glow), transparent 30%, var(--color-violet-glow)) border-box;
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0) border-box;
-  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0) border-box;
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--color-cyan-glow), transparent 30%, var(--color-violet-glow));
   opacity: 0.5;
   pointer-events: none;
+  z-index: -1;
 }
 
 .glass-panel:hover {
@@ -1224,7 +1220,7 @@ textarea:focus-visible {
 
 .contact {
   position: relative;
-  overflow: hidden;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(124, 58, 237, 0.06) 0%, transparent 70%);
 }
 
 .contact::before {
